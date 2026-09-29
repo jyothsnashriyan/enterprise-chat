@@ -9,7 +9,7 @@ import { MCPService } from './mcpService';
 
 const createGenaiAgentService = () => {
   const API_BASE_URL =
-    process.env.NEXT_PUBLIC_GENAI_API_URL || "http://localhost:3000/api";
+    process.env.NEXT_PUBLIC_GENAI_API_URL || "http://84.13.130.4:3000/api";
   let conversationId = null;
 
   /**
