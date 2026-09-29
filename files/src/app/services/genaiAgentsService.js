@@ -6,10 +6,14 @@ import { WIDGET_INLINE_PROMPT } from '../utils/widgetInlinePrompt';
 import { WIDGET_LAYOUT_PROMPT } from '../utils/widgetLayoutPrompt';
 import { CONCISE_SYSTEM_PROMPT } from '../utils/concisePrompt';
 import { MCPService } from './mcpService';
+import { withBase } from '@/lib/withBase';
 
 const createGenaiAgentService = () => {
+  // Keep API calls on the page's origin by default.  A localhost URL works only
+  // on a developer machine; in a browser on a VM it points to the visitor's
+  // machine.  withBase also preserves OCI Hosted Deployment invocation paths.
   const API_BASE_URL =
-    process.env.NEXT_PUBLIC_GENAI_API_URL || "http://localhost:3000/api";
+    process.env.NEXT_PUBLIC_GENAI_API_URL || withBase('/api');
   let conversationId = null;
 
   /**

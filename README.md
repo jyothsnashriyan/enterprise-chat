@@ -382,7 +382,7 @@ The app also runs on a regular OCI Compute instance using **Instance Principal**
    ALL {instance.compartment.id = '<compartment-ocid>'}
    ```
    or pin to a specific instance: `ALL {instance.id = 'ocid1.instance.oc1...'}`
-2. **No OCIR / image step**: clone the repo on the VM and run `npm install && npm run build && npm start` (or use a systemd unit / pm2). The Dockerfile + image push are not needed.
+2. **No OCIR / image step**: clone the repo on the VM and run `npm install && npm run build && npm start` (or use a systemd unit / pm2). `npm start` runs `entrypoint.sh`, which replaces the runtime base-path token before starting the standalone server. The Dockerfile + image push are not needed.
 3. **Env var**: set `USE_INSTANCE_PRINCIPAL=true` instead of `USE_RESOURCE_PRINCIPAL=true`.
 
 The IAM policies and the Load Balancer setup are identical.
