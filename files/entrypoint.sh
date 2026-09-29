@@ -17,6 +17,9 @@ SOURCE_DIR="${APP_SOURCE_DIR:-/app}"
 if [ ! -f "$SOURCE_DIR/server.js" ] && [ ! -f "$SOURCE_DIR/.next/standalone/server.js" ]; then
   SOURCE_DIR="."
 fi
+# SOURCE_DIR may be "." on a VM. Resolve it before changing to /tmp/app so
+# the next-cli fallback can still reach the checkout's node_modules.
+SOURCE_DIR=$(cd "$SOURCE_DIR" && pwd)
 
 echo "[entrypoint] Staging app in /tmp/app (OCI fs is read-only outside /tmp)..."
 mkdir -p /tmp/app
