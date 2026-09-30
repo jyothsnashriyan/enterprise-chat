@@ -8,8 +8,11 @@ import { CONCISE_SYSTEM_PROMPT } from '../utils/concisePrompt';
 import { MCPService } from './mcpService';
 
 const createGenaiAgentService = () => {
-  const API_BASE_URL =
-    process.env.NEXT_PUBLIC_GENAI_API_URL || "http://84.13.130.4:3000/api";
+  // Local Next.js development always calls the API on this machine. Deployed
+  // builds use the browser-visible endpoint configured at build time instead.
+  const API_BASE_URL = process.env.NODE_ENV === "development"
+    ? "http://localhost:3000/api"
+    : process.env.NEXT_PUBLIC_GENAI_API_URL;
   let conversationId = null;
 
   /**
