@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "prebuild": "node scripts/sync-pdf-worker.mjs",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint .",
     "test": "playwright test"

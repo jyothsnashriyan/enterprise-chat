@@ -255,7 +255,7 @@ export default function Home({ initialConversationId = null }) {
     }
 
     const STATIC_MODELS = [
-    "cohere.command-a-03-2025"
+    "openai.gpt-oss-120b"
     ];
 
     setModels(STATIC_MODELS);
@@ -267,7 +267,7 @@ export default function Home({ initialConversationId = null }) {
     if (savedIsAvailable) {
       setSelectedModel(savedModel);
     } else if (STATIC_MODELS.length > 0) {
-      const defaultModel = "cohere.command-a-03-2025";
+      const defaultModel = "openai.gpt-oss-120b";
       setSelectedModel(defaultModel);
       localStorage.setItem("selectedModel", defaultModel);
     }
